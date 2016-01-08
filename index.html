@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Module test</title>
+    <meta property="og:description" content="Christmas Virus">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,700italic,400italic,300,300italic' rel='stylesheet' type='text/css'>
+</head>
+
+</script>
+
+<body>
+    <section>
+        <h1>require() for the browser with Service Worker</h1>
+        <p>This demo adds supports for the require() syntax using Service Worker fetch.<br/>The demo uses lodash, async and TweenMax installed with npm<br/>The dependencies are resolved without browserify or webpack</p>
+        <h2>lodash code</h2>
+        <div id="lodash-code" ></div>
+        <h2>async code</h2>
+        <div id="async-code"></div>
+        <h2>TweenMax animation:</p>
+        <div class="box green" id="greenBox">0</div>
+    </section>
+</body>
+
+<script>
+
+    var sw_registration;
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js').then(function(registration) {
+            sw_registration = registration;
+            console.log('Service Worker registration successful with scope: ', registration.scope);
+        }).catch(function(err) {
+            console.log('Service Worker registration failed: ', err);
+        });
+    }
+
+    function unregister() {
+
+        if ('serviceWorker' in navigator) {
+            sw_registration.unregister().then(function(boolean) {
+                console.log('Service Worker unregistration successful' );
+            });
+        }
+
+    }
+
+</script>
+
+<script src="main.js"></script>
+
+</html>
